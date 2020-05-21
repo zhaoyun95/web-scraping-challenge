@@ -7,17 +7,17 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mystyle.css')}}">
     <title>Mission to Mars</title>
   </head>
   <body>
     <div class="container">
-        <div class="jumbotron" style="text-align: center;">
+        <div class="jumbotron" id="title-section" style="text-align: center;">
             <h1>Mission to Mars</h1>
             <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
         </div>
 
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron jumbotron-fluid" id="latest-news">
             <div class="container">
               <h2>Latest Mars News</h2>
               <h3>{{ data.news_title }}</h3>
