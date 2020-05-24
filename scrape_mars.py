@@ -15,7 +15,7 @@ def scrape():
 
     # url of NASA Mars News Site
     news_url = "https://mars.nasa.gov/news/"
-
+ 
     browser.visit(news_url)
     time.sleep(3)
 
@@ -34,7 +34,7 @@ def scrape():
 
     jpl_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(jpl_url)
-    #time.sleep(2)
+    time.sleep(2)
 
     browser.find_by_id('full_image').click()
     browser.click_link_by_partial_text('more info')
@@ -46,7 +46,7 @@ def scrape():
     ### ---- Mars Weather -------------------------------------
     twitter_url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(twitter_url)
-    #time.sleep(2)
+    time.sleep(2)
 
     # find the first span element with text starting with 'InSight sol'
     mars_weather = browser.find_by_xpath('//span[starts-with(text(),"InSight sol")]').first.text
@@ -57,13 +57,14 @@ def scrape():
     mars_facts_tables = pd.read_html(space_facts_url)
     df = mars_facts_tables[1]
     df.columns = ['Attributes', 'Mars', 'Earth']
+    #df.columns = ['Attributes', 'Value']
     mars_facts_html = df.to_html(index=False)
     print(f"mars_facts_html:  {mars_facts_html} ")
 
     ### ---- Mars Hemispheres -------------------------------------
     usgs_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
     browser.visit(usgs_url)
-    #time.sleep(3)
+    time.sleep(3)
 
     hem_soup = bs(browser.html, 'html.parser')
     description_divs = hem_soup.find_all('div', class_='description')
@@ -83,7 +84,7 @@ def scrape():
     image_urls = []
     for link in links:
         browser.visit(link)
-        #time.sleep(1)
+        time.sleep(1)
         html = browser.html
         soup = bs(html, 'html.parser')
         image_url = "https://astrogeology.usgs.gov" + soup.find('img', class_='wide-image')['src']
