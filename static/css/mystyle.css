@@ -1,7 +1,11 @@
 body {
     background-image: url("../mission-impossible-f.jpg") !important;
-
 }
+
+audio {
+    height: 15px;
+}
+
 #title-section {
     background-image: url("../mars4.png");
 }
