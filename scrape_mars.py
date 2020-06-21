@@ -37,7 +37,7 @@ def scrape():
     time.sleep(5)
 
     browser.find_by_id('full_image').click()
-    browser.is_element_present_by_text('more info', wait_time=1)
+    browser.is_element_present_by_text('more info', wait_time=2)
     browser.click_link_by_partial_text('more info')
     html_jpl = browser.html
     soup_jpl = bs(html_jpl, 'html.parser')
@@ -47,7 +47,7 @@ def scrape():
     ### ---- Mars Weather -------------------------------------
     twitter_url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(twitter_url)
-    time.sleep(2)
+    time.sleep(5)
 
     # find the first span element with text starting with 'InSight sol'
     mars_weather = browser.find_by_xpath('//span[starts-with(text(),"InSight sol")]').first.text
@@ -85,7 +85,7 @@ def scrape():
     image_urls = []
     for link in links:
         browser.visit(link)
-        time.sleep(2)
+        time.sleep(3)
         html = browser.html
         soup = bs(html, 'html.parser')
         image_url = "https://astrogeology.usgs.gov" + soup.find('img', class_='wide-image')['src']
